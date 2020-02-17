@@ -3,8 +3,8 @@ From: granek/default/singularity-rstudio-base:3.6.1
 
 %labels
     Maintainer Josh Granek
-    Image_Name mar1
-    Image_Version mar1_0005
+    Image_Name rnaseq
+    Image_Version rnaseq_0001
 
 %environment
   export PATH=/usr/lib/rstudio-server/bin:${PATH}
@@ -44,6 +44,9 @@ From: granek/default/singularity-rstudio-base:3.6.1
    apt-get clean
    rm -rf /var/lib/apt/lists/*
 
+%apprun rscript
+  exec Rscript "${@}"
+
 #--------------------------------------------------------------------------------
 Rscript -e "install.packages(pkgs = c('argparse','R.utils','fs','here','foreach'), \
     repos='https://cran.revolutionanalytics.com/', \
@@ -72,14 +75,4 @@ pip install DukeDSClient
 
 mkdir -p /data
 mkdir -p /workspace
-
-# Helpful:
-#------------------
-# https://gitlab.oit.duke.edu/mccahill/jupyter-HTS-2017/blob/master/Dockerfile
-# https://github.com/nickjer/singularity-r/blob/master/Singularity.3.4.3
-# https://github.com/nickjer/singularity-rstudio/blob/master/Singularity
-# https://www.singularity-hub.org/collections/174
-# https://www.singularity-hub.org/collections/463
-
-# sudo singularity build canu_rstudio.simg singularity_canu_rstudio
 

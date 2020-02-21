@@ -4,10 +4,11 @@ From: granek/default/singularity-rstudio-base:3.6.1
 %labels
     Maintainer Josh Granek
     Image_Name rnaseq
-    Image_Version rnaseq_0001
+    Image_Version rnaseq_0002
 
 %post
   # Install extra stuff
+  export DEBIAN_FRONTEND=noninteractive
   apt-get update
   apt-get install -y --no-install-recommends \
     curl \
@@ -31,7 +32,8 @@ From: granek/default/singularity-rstudio-base:3.6.1
     rna-star \
     sra-toolkit \
     bcftools \
-    htop
+    htop \
+    jupyter-notebook 
    apt-get clean
    rm -rf /var/lib/apt/lists/*
 
@@ -59,3 +61,8 @@ From: granek/default/singularity-rstudio-base:3.6.1
 
 %apprun rscript
   exec Rscript "${@}"
+
+%apprun jupyter
+  export JUPYTER_RUNTIME_DIR="$HOME/.local/share/jupyter/runtime"
+  mkdir -p $JUPYTER_RUNTIME_DIR
+  jupyter notebook

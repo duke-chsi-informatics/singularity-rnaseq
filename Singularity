@@ -33,13 +33,20 @@ From: granek/default/singularity-rstudio-base:3.6.1
     sra-toolkit \
     bcftools \
     htop \
-    jupyter-notebook 
+    jupyter-notebook \
+    python3-pip
    apt-get clean
    rm -rf /var/lib/apt/lists/*
 
-   #--------------------------------------------------------------------------------
-   Rscript -e "install.packages(pkgs = c('argparse','R.utils','fs','here','foreach'), repos='https://cran.revolutionanalytics.com/', dependencies=TRUE, clean = TRUE)"
 
+   #--------------------------------------------------------------------------------
+   pip3 install bash_kernel
+   python3 -m bash_kernel.install
+   #--------------------------------------------------------------------------------
+   Rscript -e "install.packages(c('IRkernel'), repos = 'https://cloud.r-project.org/')"
+   Rscript -e "IRkernel::installspec(user = FALSE)"
+
+   Rscript -e "install.packages(pkgs = c('argparse','R.utils','fs','here','foreach'), repos='https://cran.revolutionanalytics.com/', dependencies=TRUE, clean = TRUE)"
    Rscript -e "if (!requireNamespace('BiocManager')){install.packages('BiocManager')}; BiocManager::install(); BiocManager::install(c('ggbio','GenomicRanges','rtracklayer', 'DESeq2', 'Gviz'))"
    #--------------------------------------------------------------------------------
    # install fastq-mcf and fastq-multx from source since apt-get install causes problems

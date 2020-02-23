@@ -9,23 +9,13 @@ From: granek/default/singularity-rstudio-base:3.6.1
 %post
   # Install extra stuff
   export DEBIAN_FRONTEND=noninteractive
-  apt-get update
-  apt-get install -y --no-install-recommends \
-    jupyter-notebook \
-    python3-pip
-  apt-get clean
-  rm -rf /var/lib/apt/lists/*
 
+  pip3 install notebook
   pip3 install bash_kernel
   python3 -m bash_kernel.install
 
-  # Rscript -e "install.packages(c('IRkernel'), repos = 'https://cloud.r-project.org/')"
-  # Rscript -e "IRkernel::installspec(user = FALSE)"
-
-
-
-
-
+  Rscript -e "install.packages(c('IRkernel'), repos = 'https://cloud.r-project.org/')"
+  Rscript -e "IRkernel::installspec(user = FALSE)"
 
   mkdir -p /data
   mkdir -p /workspace

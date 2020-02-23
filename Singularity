@@ -32,14 +32,13 @@ From: granek/default/singularity-rstudio-base:3.6.1
     rna-star \
     sra-toolkit \
     bcftools \
-    htop \
-    jupyter-notebook \
-    python3-pip
+    htop
    apt-get clean
    rm -rf /var/lib/apt/lists/*
 
 
    #--------------------------------------------------------------------------------
+   pip3 install notebook
    pip3 install bash_kernel
    python3 -m bash_kernel.install
    #--------------------------------------------------------------------------------

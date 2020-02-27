@@ -47,6 +47,10 @@ From: granek/default/singularity-rstudio-base:3.6.1
 
    Rscript -e "install.packages(pkgs = c('argparse','R.utils','fs','here','foreach'), repos='https://cran.revolutionanalytics.com/', dependencies=TRUE, clean = TRUE)"
    Rscript -e "if (!requireNamespace('BiocManager')){install.packages('BiocManager')}; BiocManager::install(); BiocManager::install(c('ggbio','GenomicRanges','rtracklayer', 'DESeq2', 'Gviz'))"
+   #-------------------------------------------------------------------------------
+   # Visualization packages for 3D TSNE plot and Venn Diagram 
+   Rscript -e "install.packages(pkgs=c('Rtsne','plotly'), repos ='https://cran.revolutionanalytics.com/', dependencies=TRUE, clean=TRUE)"
+   Rscript -e "if (!requireNamespace('BiocManager')){install.packages('BiocManager')}; BiocManager::install(); BiocManager::install('limma')"
    #--------------------------------------------------------------------------------
    # install fastq-mcf and fastq-multx from source since apt-get install causes problems
    mkdir -p /usr/bin && \

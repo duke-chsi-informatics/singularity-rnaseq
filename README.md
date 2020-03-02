@@ -1,10 +1,28 @@
 # singularity-rnaseq
 
 ## Running Jupyter
-Run this to start Jupyter:
+Run the following to start Jupyter:
 ```
-singularity run --app jupyter library://granek/duke-chsi-informatics/singularity-rstudio:latest
+singularity shell library://dylanyang/default/adjuvant_singularity_image:latest
+
+jupyter notebook
 ```
+Replace 'latest' with the latest version of image
+
+## Running Rstudio
+Run this to start Rstudio:
+```
+singularity exec library://dylanyang/default/adjuvant_singularity_image:latest /usr/local/bin/run_singularity_rstudio.sh
+```
+Replace 'latest' with the latest version of image
+
+## Directories Bind-mounting
+Shell in the container with directories bind-mounting
+```
+singularity shell --bind /absolute_local_path1:/absolute_container_path1,/absolute_local_path2:/absolute_container_path2 library://dylanyang/default/adjuvant_singularity_image:latest
+```
+Replace 'latest' with the latest version of image
+
 
 Then follow the instructions that Jupyter printed to the terminal when you started it up to access Jupyter in your web browser
 

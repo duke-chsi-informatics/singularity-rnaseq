@@ -48,7 +48,7 @@ From: granek/default/singularity-rstudio-base:3.6.1
    Rscript -e "IRkernel::installspec(user = FALSE)"
 
    Rscript -e "install.packages(pkgs = c('argparse','R.utils','fs','here','foreach'), repos='https://cran.revolutionanalytics.com/', dependencies=TRUE, clean = TRUE)"
-   Rscript -e "if (!requireNamespace('BiocManager')){install.packages('BiocManager')}; BiocManager::install(); BiocManager::install(c('ggbio','GenomicRanges','rtracklayer', 'DESeq2', 'Gviz'))"
+   Rscript -e "if (!requireNamespace('BiocManager')){install.packages('BiocManager')}; BiocManager::install(); BiocManager::install(c('ggbio','GenomicRanges','rtracklayer', 'DESeq2', 'Gviz','gage'))"
    #-------------------------------------------------------------------------------
    # Visualization packages for 3D TSNE plot, Venn Diagram and heat map 
    Rscript -e "install.packages(pkgs=c('Rtsne','plotly','pheatmap'), repos ='https://cran.revolutionanalytics.com/', dependencies=TRUE, clean=TRUE)"

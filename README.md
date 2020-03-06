@@ -3,7 +3,7 @@
 ## Running Jupyter
 Run the following to start Jupyter:
 ```
-singularity shell library://dylanyang/default/adjuvant_singularity_image:latest
+singularity shell library://dylanyang/default/rnaseq_pipeline:latest
 
 jupyter notebook
 ```
@@ -12,14 +12,14 @@ Replace 'latest' with the latest version of image
 ## Running Rstudio
 Run this to start Rstudio:
 ```
-singularity exec library://dylanyang/default/adjuvant_singularity_image:latest /usr/local/bin/run_singularity_rstudio.sh
+singularity exec library://dylanyang/default/rnaseq_pipeline:latest /usr/local/bin/run_singularity_rstudio.sh
 ```
 Replace 'latest' with the latest version of image
 
 ## Directories Bind-mounting
 Shell in the container with directories bind-mounting
 ```
-singularity shell --bind /absolute_local_path1:/absolute_container_path1,/absolute_local_path2:/absolute_container_path2 library://dylanyang/default/adjuvant_singularity_image:latest
+singularity shell --bind /absolute_local_path1:/absolute_container_path1,/absolute_local_path2:/absolute_container_path2 library://dylanyang/default/rnaseq_pipeline:latest
 ```
 Replace 'latest' with the latest version of image
 

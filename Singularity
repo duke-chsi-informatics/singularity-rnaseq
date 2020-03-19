@@ -53,6 +53,9 @@ From: granek/default/singularity-rstudio-base:3.6.1
    # Visualization packages for 3D TSNE plot, Venn Diagram and heat map 
    Rscript -e "install.packages(pkgs=c('Rtsne','plotly','pheatmap'), repos ='https://cran.revolutionanalytics.com/', dependencies=TRUE, clean=TRUE)"
    Rscript -e "if (!requireNamespace('BiocManager')){install.packages('BiocManager')}; BiocManager::install(); BiocManager::install('limma')"
+   
+   # install database for mus musculus
+   Rscript -e "if (!requireNamespace('BiocManager')){install.packages('BiocManager')}; BiocManager::install(); BiocManager::install('EnsDb.Mmusculus.v79')"
 
    # Pathway Analysis Toolkit
    Rscript -e "if (!requireNamespace('BiocManager')){install.packages('BiocManager')}; BiocManager::install(); BiocManager::install(c('gage','gageData','pathview'))"

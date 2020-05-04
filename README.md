@@ -27,10 +27,14 @@ You can use this image interactively on a SLURM-managed cluster by running launc
 2.  run tmux on login node: `tmux new -s container_demo`
 3.  Run this on login node: `srun -A chsi -p chsi --mem=100G -c 30 --pty bash -i`
 4.  Run `hostname -A` on compute node and record results
-5.  Run on compute node:
-    1.  mkdir -p /scratch/josh/rnaseq_demo/rawdata /scratch/josh/rnaseq_demo/workspace
-    2.  singularity run --bind /scratch/josh/rnaseq_demo/rawdata:/data --bind /scratch/josh/rnaseq_demo/workspace:/workspace library://granek/duke-chsi-informatics/singularity-rnaseq
-        1.  record port, username, and password
+5.  Run on compute node (and record port, username, and password):
+
+```
+mkdir -p /scratch/josh/rnaseq_demo/rawdata /scratch/josh/rnaseq_demo/workspace
+
+singularity run --bind /scratch/josh/rnaseq_demo/rawdata:/data --bind /scratch/josh/rnaseq_demo/workspace:/workspace library://granek/duke-chsi-informatics/singularity-rnaseq
+```
+
 6.  Run on local machine: `ssh -L PORT:COMPUTE_HOSTNAME:PORT NETID@dcc-slogin-01.oit.duke.edu`
     -   Where PORT is the port returned but the "singularity run" commmand
     -   Where COMPUTE_HOSTNAME is the hostname returned by running "hostname -A" on the compute node

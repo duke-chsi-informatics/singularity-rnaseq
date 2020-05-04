@@ -27,12 +27,15 @@ You can use this image interactively on a SLURM-managed cluster by running launc
 2.  run tmux on login node: `tmux new -s container_demo`
 3.  Run this on login node: `srun -A chsi -p chsi --mem=100G -c 30 --pty bash -i`
 4.  Run `hostname -A` on compute node and record results
-5.  Run on compute node (and record port, username, and password):
+5.  Run on the following on a compute node and note the port, username, and password that the command prints:
 
 ```
 mkdir -p /scratch/josh/rnaseq_demo/rawdata /scratch/josh/rnaseq_demo/workspace
 
-singularity run --bind /scratch/josh/rnaseq_demo/rawdata:/data --bind /scratch/josh/rnaseq_demo/workspace:/workspace library://granek/duke-chsi-informatics/singularity-rnaseq
+singularity run \
+	--bind /scratch/josh/rnaseq_demo/rawdata:/data \
+	--bind /scratch/josh/rnaseq_demo/workspace:/workspace \
+	library://granek/duke-chsi-informatics/singularity-rnaseq
 ```
 
 6.  Run on local machine: `ssh -L PORT:COMPUTE_HOSTNAME:PORT NETID@dcc-slogin-01.oit.duke.edu`
@@ -49,8 +52,17 @@ singularity run --bind /scratch/josh/rnaseq_demo/rawdata:/data --bind /scratch/j
 3.  Run this on login node: `srun -A chsi -p chsi --mem=100G -c 30 --pty bash -i`
 4.  Run `hostname -A` on compute node and record results
 5.  Run on compute node:
-    1.  mkdir -p /scratch/josh/rnaseq_demo/rawdata /scratch/josh/rnaseq_demo/workspace
-    2.  singularity run --app jupyter --bind /scratch/josh/rnaseq_demo/rawdata:/data --bind /scratch/josh/rnaseq_demo/workspace:/workspace library://granek/duke-chsi-informatics/singularity-rnaseq
+
+```
+mkdir -p /scratch/josh/rnaseq_demo/rawdata /scratch/josh/rnaseq_demo/workspace
+
+singularity run \
+	--app jupyter \
+	--bind /scratch/josh/rnaseq_demo/rawdata:/data \
+	--bind /scratch/josh/rnaseq_demo/workspace:/workspace \
+	library://granek/duke-chsi-informatics/singularity-rnaseq
+```
+	
 6.  Run on local machine: `ssh -L PORT:COMPUTE_HOSTNAME:PORT NETID@dcc-slogin-01.oit.duke.edu`
     -   Where PORT is the number after "http://127.0.0.1:" in the URL given by Jupyter (defaults to 8888, but Jupyter will use a different one if the default is in use, or if a different port is supplied as an argument using `--port` when running the singularity container
     -   Where COMPUTE_HOSTNAME is the hostname returned by running "hostname -A" on the compute node

@@ -64,10 +64,10 @@ singularity run \
 ```
 	
 6.  Run on local machine: `ssh -L PORT:COMPUTE_HOSTNAME:PORT NETID@dcc-slogin-01.oit.duke.edu`
-    -   Where PORT is the number after "http://127.0.0.1:" in the URL given by Jupyter (defaults to 8888, but Jupyter will use a different one if the default is in use, or if a different port is supplied as an argument using `--port` when running the singularity container
+    -   Where PORT is the number after `http://127.0.0.1:` in the URL given by Jupyter (defaults to 8888, but Jupyter will use a different one if the default is in use, or if a different port is supplied as an argument using `--port` when running the singularity container
     -   Where COMPUTE_HOSTNAME is the hostname returned by running "hostname -A" on the compute node
     -   Where NETID is your NetID
-7.  Copy the URL supplied by jupyter that starts "http://127.0.0.1:" and paste it in a webbrowser
+7.  Copy the URL supplied by jupyter that starts `http://127.0.0.1:` and paste it in a webbrowser
 8.  Have fun!!
 9. At the end of an analysis you will probably want to copy results to your directory in `/work` or `/hpc/group`
 

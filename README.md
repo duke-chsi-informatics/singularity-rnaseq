@@ -44,13 +44,13 @@ singularity run \
     -   Where NETID is your NetID
 7.  Go to "localhost:PORT" in a webrowser and enter the username and password printed by the "singularity run" commmand
 8.  Have fun!!
+9. At the end of an analysis you will probably want to copy results to your directory in `/work` or `/hpc/group`
 
 ### Jupyter
 
 1.  ssh to dcc-slogin-01.oit.duke.edu
 2.  run tmux on login node: `tmux new -s container_demo`
 3.  Run this on login node: `srun -A chsi -p chsi --mem=100G -c 30 --pty bash -i`
-4.  Run `hostname -A` on compute node and record results
 5.  Run on compute node:
 
 ```
@@ -69,4 +69,12 @@ singularity run \
     -   Where NETID is your NetID
 7.  Copy the URL supplied by jupyter that starts "http://127.0.0.1:" and paste it in a webbrowser
 8.  Have fun!!
+9. At the end of an analysis you will probably want to copy results to your directory in `/work` or `/hpc/group`
+
+### Jupyter on GPU node
+
+Same as above, but the srun command should use the `chsi-gpu` partition and request a gpu, but less CPUs and Memory:
+
+`srun -A chsi -p chsi-gpu --gres=gpu:1 --mem=15866 -c 2 --pty bash -i`
+
 

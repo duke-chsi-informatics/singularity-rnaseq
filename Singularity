@@ -4,7 +4,10 @@ From: granek/default/singularity-rstudio-base:3.6.1
 %labels
     Maintainer Josh Granek
     Image_Name rnaseq
-    Image_Version rnaseq_0002
+    Image_Version rnaseq_0003
+
+%environment
+    export PATH=$PATH:/usr/lib/rstudio-server/bin/pandoc
 
 %post
   # Install extra stuff
@@ -71,4 +74,4 @@ From: granek/default/singularity-rstudio-base:3.6.1
 %apprun jupyter
   export JUPYTER_RUNTIME_DIR="$HOME/.local/share/jupyter/runtime"
   mkdir -p $JUPYTER_RUNTIME_DIR
-  jupyter notebook
+  jupyter notebook --no-browser --ip='0.0.0.0' "${@}"

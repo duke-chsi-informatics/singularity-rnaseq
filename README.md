@@ -23,7 +23,7 @@ You can use this image interactively on a SLURM-managed cluster by running launc
 
 ### RStudio
 
-1.  ssh to DCC login node: `ssh NETID@dcc-slogin-01.oit.duke.edu`
+1.  ssh to DCC login node: `ssh NETID@dcc-login-01.rc.duke.edu`
 2.  run tmux on login node: `tmux new -s container_demo`
 3.  Run this on login node: `srun -A chsi -p chsi --mem=100G -c 30 --pty bash -i`
 4.  Run `hostname -A` on compute node and record results
@@ -38,7 +38,7 @@ singularity run \
 	library://granek/duke-chsi-informatics/singularity-rnaseq
 ```
 
-6.  Run on local machine: `ssh -L PORT:COMPUTE_HOSTNAME:PORT NETID@dcc-slogin-01.oit.duke.edu`
+6.  Run on local machine: `ssh -L PORT:COMPUTE_HOSTNAME:PORT NETID@dcc-login-01.rc.duke.edu`
     -   Where PORT is the port returned but the "singularity run" commmand
     -   Where COMPUTE_HOSTNAME is the hostname returned by running "hostname -A" on the compute node
     -   Where NETID is your NetID
@@ -48,7 +48,7 @@ singularity run \
 
 ### Jupyter
 
-1.  ssh to dcc-slogin-01.oit.duke.edu
+1.  ssh to dcc-login-01.rc.duke.edu
 2.  run tmux on login node: `tmux new -s container_demo`
 3.  Run this on login node: `srun -A chsi -p chsi --mem=100G -c 30 --pty bash -i`
 5.  Run on compute node:
@@ -63,7 +63,7 @@ singularity run \
 	library://granek/duke-chsi-informatics/singularity-rnaseq
 ```
 	
-6.  Run on local machine: `ssh -L PORT:COMPUTE_HOSTNAME:PORT NETID@dcc-slogin-01.oit.duke.edu`
+6.  Run on local machine: `ssh -L PORT:COMPUTE_HOSTNAME:PORT NETID@dcc-login-01.rc.duke.edu`
     -   Where PORT is the number after `http://127.0.0.1:` in the URL given by Jupyter (defaults to 8888, but Jupyter will use a different one if the default is in use, or if a different port is supplied as an argument using `--port` when running the singularity container
     -   Where COMPUTE_HOSTNAME is the hostname returned by running "hostname -A" on the compute node
     -   Where NETID is your NetID

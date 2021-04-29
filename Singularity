@@ -1,5 +1,5 @@
 BootStrap: library
-From: granek/default/singularity-rstudio-base:3.6.1
+From: granek/default/singularity-rstudio-base:4.0.3
 
 %labels
     Maintainer Josh Granek
@@ -7,7 +7,6 @@ From: granek/default/singularity-rstudio-base:3.6.1
     Image_Version rnaseq_0004
 
 %environment
-    export PATH=$PATH:/usr/lib/rstudio-server/bin/pandoc
 
 %post
   # Install extra stuff

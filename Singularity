@@ -27,10 +27,10 @@ From: granek/default/singularity-rstudio-base:4.0.3
     emacs \
     less \
     make \
+    python3-pip \
     libxml2-dev \
     libgsl0-dev \
     libglu1-mesa \
-    libmariadb-client-lgpl-dev \
     seqtk \
     rna-star \
     bcftools \

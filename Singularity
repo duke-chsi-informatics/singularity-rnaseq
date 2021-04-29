@@ -27,6 +27,7 @@ From: granek/default/singularity-rstudio-base:4.0.3
     emacs \
     less \
     make \
+    python3-dev \
     python3-pip \
     libxml2-dev \
     libgsl0-dev \
@@ -47,7 +48,7 @@ From: granek/default/singularity-rstudio-base:4.0.3
    Rscript -e "install.packages(c('IRkernel'), repos = 'https://cloud.r-project.org/')"
    Rscript -e "IRkernel::installspec(user = FALSE)"
 
-   Rscript -e "install.packages(pkgs = c('argparse','R.utils','fs','here','foreach'), repos='https://cran.revolutionanalytics.com/', dependencies=TRUE, clean = TRUE)"
+   Rscript -e "install.packages(pkgs = c('argparse','R.utils','fs','here','foreach'), repos='https://mirror.las.iastate.edu/CRAN/', dependencies=TRUE, clean = TRUE)"
    Rscript -e "if (!requireNamespace('BiocManager')){install.packages('BiocManager')}; BiocManager::install(); BiocManager::install(c('ggbio','GenomicRanges','rtracklayer', 'DESeq2', 'Gviz'))"
    #--------------------------------------------------------------------------------
    # install fastq-mcf and fastq-multx from source since apt-get install causes problems

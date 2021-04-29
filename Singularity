@@ -4,9 +4,10 @@ From: granek/default/singularity-rstudio-base:4.0.3
 %labels
     Maintainer Josh Granek
     Image_Name rnaseq
-    Image_Version rnaseq_0004
+    Image_Version rnaseq_0005
 
 %environment
+    export PATH=$PATH:/opt/bin
 
 %post
   # Install extra stuff
@@ -32,18 +33,15 @@ From: granek/default/singularity-rstudio-base:4.0.3
     libmariadb-client-lgpl-dev \
     seqtk \
     rna-star \
-    sra-toolkit \
     bcftools \
     htop \
-    fastqc
+    fastqc \
+    ncbi-entrez-direct \
+    picard-tools
     
-   apt-get clean
-   rm -rf /var/lib/apt/lists/*
-
-
    #--------------------------------------------------------------------------------
-   pip3 install notebook
-   pip3 install bash_kernel
+   pip3 install --no-cache-dir notebook
+   pip3 install --no-cache-dir bash_kernel
    python3 -m bash_kernel.install
    #--------------------------------------------------------------------------------
    Rscript -e "install.packages(c('IRkernel'), repos = 'https://cloud.r-project.org/')"
@@ -53,6 +51,7 @@ From: granek/default/singularity-rstudio-base:4.0.3
    Rscript -e "if (!requireNamespace('BiocManager')){install.packages('BiocManager')}; BiocManager::install(); BiocManager::install(c('ggbio','GenomicRanges','rtracklayer', 'DESeq2', 'Gviz'))"
    #--------------------------------------------------------------------------------
    # install fastq-mcf and fastq-multx from source since apt-get install causes problems
+   #------------------
    mkdir -p /usr/bin && \
    	 cd /tmp && \
 	 wget https://github.com/ExpressionAnalysis/ea-utils/archive/1.04.807.tar.gz && \
@@ -63,12 +62,26 @@ From: granek/default/singularity-rstudio-base:4.0.3
 	 cd /tmp &&  \
 	 rm -rf ea-utils-1.04.807
    #--------------------------------------------------------------------------------
-   pip3 install DukeDSClient multiqc
-
+   pip3 install --no-cache-dir DukeDSClient multiqc
+   #--------------------------------------------------------------------------------
+   
+   #--------------------------------------------------------------------------------
+   # Install Newer SRA toolkits than available from Ubuntu <https://github.com/ncbi/sra-tools/wiki/01.-Downloading-SRA-Toolkit>
+   #------------------
+   curl -L -s https://ftp-trace.ncbi.nlm.nih.gov/sra/sdk/2.11.0/sratoolkit.2.11.0-ubuntu64.tar.gz | tar -zx
+   mkdir -p /opt
+   mv sratoolkit.2.11.0-ubuntu64/bin sratoolkit.2.11.0-ubuntu64/schema /opt
+   rm -rf sratoolkit.2.11.0-ubuntu64
    #--------------------------------------------------------------------------------
 
    mkdir -p /data
    mkdir -p /workspace
+
+   #------------------
+   # Final apt cleanup
+   #------------------
+   apt-get clean
+   rm -rf /var/lib/apt/lists/*
 
 %apprun rscript
   exec Rscript "${@}"

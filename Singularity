@@ -35,7 +35,9 @@ From: granek/default/singularity-rstudio-base:3.6.1
     rna-star \
     sra-toolkit \
     bcftools \
-    htop
+    htop \
+    fastqc
+    
    apt-get clean
    rm -rf /var/lib/apt/lists/*
 
@@ -62,7 +64,8 @@ From: granek/default/singularity-rstudio-base:3.6.1
 	 cd /tmp &&  \
 	 rm -rf ea-utils-1.04.807
    #--------------------------------------------------------------------------------
-   pip install DukeDSClient
+   pip3 install DukeDSClient multiqc
+
    #--------------------------------------------------------------------------------
 
    mkdir -p /data
